@@ -1,6 +1,7 @@
 import 'package:case_store/components/my_button.dart';
 import 'package:case_store/components/textbox.dart';
 import 'package:case_store/screens/WelcomeScreen.dart';
+import 'package:case_store/screens/storePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -54,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                         await authenticationobject.signInWithEmailAndPassword(
                             email: email.text, password: password.text);
                     if (myUser != null) {
-                      Navigator.pushNamed(context, WelcomeScreen.screenRoute);
+                      Navigator.pushNamed(context, StorePage.screenRoute);
                     }
                     ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text("added successfully")));

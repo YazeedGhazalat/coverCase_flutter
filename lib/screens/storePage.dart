@@ -16,9 +16,25 @@ class StorePage extends StatefulWidget {
 }
 
 class _StorePageState extends State<StorePage> {
-  // final _auth = FirebaseAuth.instance; //to Connect To the firebase by email
-  String? picUrl; //this give us the URL for the pic
-  String? picPrice; //this give us the Pricefor the pic
+  final _auth = FirebaseAuth.instance;
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
+  void getCurrentUser() {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        signInUser = user;
+        print(signInUser.email);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,6 +120,8 @@ class AlertPage extends StatelessWidget {
   }) : super(key: key);
   final imageUrlControl = TextEditingController();
   final priceConrol = TextEditingController();
+  final _auth = FirebaseAuth.instance;
+
   @override
   String? picUrl; //this give us the URL for the pic
   String? picPrice; //this give us the Pricefor the pic
@@ -111,30 +129,83 @@ class AlertPage extends StatelessWidget {
     return AlertDialog(
       content: Column(
         children: [
-          MyTextBox(
-              onChanged: (value) {
-                picUrl = value;
-              },
-              contlr: imageUrlControl,
-              hintText: "Image URL",
-              scureText: false),
-          MyTextBox(
-              onChanged: (value) {
-                picUrl = value;
-              },
-              contlr: priceConrol,
-              hintText: "Price",
-              scureText: false),
+          TextField(
+            onChanged: ((value) {
+              picUrl = value;
+            }),
+            controller: imageUrlControl,
+            decoration: InputDecoration(
+              hintText: "Add price",
+              contentPadding: EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 20,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.orange, width: 1),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.blue,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+            ),
+          ),
+          TextField(
+            onChanged: ((value) {
+              picPrice = value;
+            }),
+            controller: priceConrol,
+            decoration: InputDecoration(
+              hintText: "Add price",
+              contentPadding: EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 20,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.orange, width: 1),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.blue,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+            ),
+          ),
           MyButton(
               color: Colors.green,
               onPressed: (() {
-                print(signInUser);
+                print(signInUser.email);
+                print("${picPrice}     $picUrl");
                 imageUrlControl.clear();
                 priceConrol.clear();
                 _firestore.collection("stuff").add(
                   {
-                    "price": picPrice,
-                    "url": picUrl,
+                    'price': picPrice.toString(),
+                    'url': picUrl.toString(),
                   },
                 );
               }),
