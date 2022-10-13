@@ -1,6 +1,7 @@
 import 'package:case_store/screens/WelcomeScreen.dart';
 import 'package:case_store/screens/login&register/loginPage.dart';
 import 'package:case_store/screens/login&register/registerPage.dart';
+import 'package:case_store/screens/storePage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,6 +12,7 @@ void main() {
       LoginPage.screenRoute: (context) => LoginPage(),
       RegisterPage.screenRoute: (context) => RegisterPage(),
       WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
+      StorePage.screenRoute: (context) => StorePage()
     },
   ));
 }
