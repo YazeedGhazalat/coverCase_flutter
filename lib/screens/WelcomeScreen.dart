@@ -1,4 +1,6 @@
 import 'package:case_store/components/my_button.dart';
+import 'package:case_store/screens/login&register/loginPage.dart';
+import 'package:case_store/screens/login&register/registerPage.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -17,7 +19,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            MyButton(color: Colors.blue, onPressed: (() {}), title: "AGA")
+            MyButton(
+                color: Colors.blue,
+                onPressed: (() {
+                  Navigator.pushNamed(context, LoginPage.screenRoute);
+                }),
+                title: "Login"),
+            MyButton(
+                color: Colors.blue,
+                onPressed: (() {
+                  Navigator.pushNamed(context, RegisterPage.screenRoute);
+                }),
+                title: "Sign up")
           ],
         ),
       ),
