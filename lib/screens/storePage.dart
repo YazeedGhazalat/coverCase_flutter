@@ -1,6 +1,9 @@
+import 'package:case_store/components/my_button.dart';
+import 'package:case_store/components/textbox.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 final _firestore = FirebaseFirestore.instance;
 late User signInUser; //this give us the email
@@ -13,12 +16,22 @@ class StorePage extends StatefulWidget {
 }
 
 class _StorePageState extends State<StorePage> {
-  final _auth = FirebaseAuth.instance; //to Connect To the firebase
+  // final _auth = FirebaseAuth.instance; //to Connect To the firebase by email
   String? picUrl; //this give us the URL for the pic
   String? picPrice; //this give us the Pricefor the pic
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: ((context) {
+                return AlertPage();
+              }));
+        },
+      ),
       appBar: AppBar(),
       body: SafeArea(
         child: Center(
@@ -56,57 +69,77 @@ class _StorePageState extends State<StorePage> {
                     width: double.maxFinite,
                   ),
                 )),
+            SizedBox(
+              height: 10,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                MaterialButton(
-                  shape: ContinuousRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  onPressed: () {},
-                  height: 40,
-                  splashColor: Colors.amber,
-                  color: Colors.white,
-                  child: Icon(Icons.favorite, color: Colors.black),
-                  elevation: 20,
-                ),
+                storeButtton(myicon: Icons.favorite, onpressed: () {}),
                 Divider(
                   indent: 10,
                   thickness: 0,
                 ),
-                MaterialButton(
-                  shape: ContinuousRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  onPressed: () {},
-                  height: 40,
-                  splashColor: Colors.amber,
-                  color: Colors.white,
-                  child: Icon(Icons.info, color: Colors.black),
-                  elevation: 20,
-                ),
+                storeButtton(myicon: Icons.info, onpressed: () {}),
                 Divider(
                   indent: 10,
                   thickness: 0,
                 ),
-                MaterialButton(
-                  shape: ContinuousRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  onPressed: () {},
-                  height: 40,
-                  splashColor: Colors.amber,
-                  color: Colors.white,
-                  child: Icon(
-                    Icons.add_shopping_cart,
-                    color: Colors.black,
-                  ),
-                  elevation: 20,
+                SizedBox(
+                  height: 20,
                 ),
+                storeButtton(myicon: Icons.add_shopping_cart, onpressed: () {}),
               ],
             )
           ],
         )),
+      ),
+    );
+  }
+}
+
+class AlertPage extends StatelessWidget {
+  AlertPage({
+    Key? key,
+  }) : super(key: key);
+  final imageUrlControl = TextEditingController();
+  final priceConrol = TextEditingController();
+  @override
+  String? picUrl; //this give us the URL for the pic
+  String? picPrice; //this give us the Pricefor the pic
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      content: Column(
+        children: [
+          MyTextBox(
+              onChanged: (value) {
+                picUrl = value;
+              },
+              contlr: imageUrlControl,
+              hintText: "Image URL",
+              scureText: false),
+          MyTextBox(
+              onChanged: (value) {
+                picUrl = value;
+              },
+              contlr: priceConrol,
+              hintText: "Price",
+              scureText: false),
+          MyButton(
+              color: Colors.green,
+              onPressed: (() {
+                print(signInUser);
+                imageUrlControl.clear();
+                priceConrol.clear();
+                _firestore.collection("stuff").add(
+                  {
+                    "price": picPrice,
+                    "url": picUrl,
+                  },
+                );
+              }),
+              title: "Add to store")
+        ],
       ),
     );
   }
