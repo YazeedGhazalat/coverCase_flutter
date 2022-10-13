@@ -89,7 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             scureText: true),
                         SizedBox(height: 30),
                         MyButton(
-                          color: Colors.black!,
+                          color: Colors.black,
                           title: "Register",
                           onPressed: () async {
                             try {
