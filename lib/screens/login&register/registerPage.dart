@@ -1,5 +1,6 @@
 import 'package:case_store/components/my_button.dart';
 import 'package:case_store/components/textbox.dart';
+import 'package:case_store/screens/WelcomeScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';

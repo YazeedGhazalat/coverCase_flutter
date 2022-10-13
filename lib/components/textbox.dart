@@ -7,16 +7,18 @@ class MyTextBox extends StatelessWidget {
     required this.hintText,
     required this.scureText,
     this.textType,
+    this.onChanged,
   }) : super(key: key);
 
   final TextEditingController contlr;
   final String? hintText;
   bool scureText = false;
   TextInputType? textType;
-
+  Function? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: ((value) {}),
       keyboardType: textType,
       obscureText: scureText,
       controller: contlr,
