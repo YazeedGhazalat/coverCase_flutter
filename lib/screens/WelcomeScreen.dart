@@ -17,7 +17,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            MyButton(color: Colors.black, onPressed: (() {}), title: "AGA")
+            MyButton(color: Colors.blue, onPressed: (() {}), title: "AGA")
           ],
         ),
       ),
