@@ -16,51 +16,107 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      backgroundColor: Colors.white,
+      body: SafeArea(
         child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Center(
-                child: Text("Welcome to our app"),
+          children: [
+            Expanded(
+              flex: 2,
+              child: Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(80),
+                    )),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "LOGIN",
+                      style: TextStyle(color: Colors.white, fontSize: 40),
+                    ),
+                  ],
+                ),
               ),
-              Divider(
-                height: 25,
-              ),
-              Text("email"),
-              MyTextBox(
-                  textType: TextInputType.emailAddress,
-                  contlr: email,
-                  hintText: "Enter your email",
-                  scureText: false),
-              SizedBox(
-                height: 30,
-              ),
-              Text("password"),
-              MyTextBox(
-                  contlr: password,
-                  hintText: "Enter your password",
-                  scureText: true),
-              Divider(height: 25),
-              MyButton(
-                color: Colors.green[800]!,
-                title: "Login",
-                onPressed: () async {
-                  try {
-                    var authenticationobject = FirebaseAuth.instance;
+            ),
+            Expanded(
+              flex: 8,
+              child: Container(
+                color: Colors.black,
+                child: Container(
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(100),
+                      )),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: Text(
+                            "LOGIN",
+                            style: TextStyle(fontSize: 25),
+                          ),
+                        ),
+                        Divider(
+                          height: 25,
+                        ),
+                        Text(
+                          "email",
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        MyTextBox(
+                            textType: TextInputType.emailAddress,
+                            contlr: email,
+                            hintText: "Enter your email",
+                            scureText: false),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          "password",
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        MyTextBox(
+                            contlr: password,
+                            hintText: "Enter your password",
+                            scureText: true),
+                        SizedBox(height: 30),
+                        MyButton(
+                          color: Colors.black!,
+                          title: "Login",
+                          onPressed: () async {
+                            try {
+                              var authenticationobject = FirebaseAuth.instance;
 
-                    UserCredential myUser =
-                        await authenticationobject.signInWithEmailAndPassword(
-                            email: email.text, password: password.text);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text("added successfully")));
-                  } catch (e) {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text("$e")));
-                  }
-                },
+                              UserCredential myUser = await authenticationobject
+                                  .signInWithEmailAndPassword(
+                                      email: email.text,
+                                      password: password.text);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text("added successfully")));
+                            } catch (e) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(content: Text("$e")));
+                            }
+                          },
+                        ),
+                        SizedBox(height: 25),
+                        TextButton(
+                          child: Text("Don't have any account ! Sign Up",
+                              style: TextStyle(color: Colors.black)),
+                          onPressed: () async {},
+                        ),
+                      ]),
+                ),
               ),
-            ]),
+            ),
+          ],
+        ),
       ),
     );
   }
