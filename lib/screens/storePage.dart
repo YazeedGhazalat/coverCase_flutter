@@ -16,6 +16,25 @@ class StorePage extends StatefulWidget {
 }
 
 class _StorePageState extends State<StorePage> {
+  final _auth = FirebaseAuth.instance;
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
+  void getCurrentUser() {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        signInUser = user;
+        print(signInUser.email);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   // final _auth = FirebaseAuth.instance; //to Connect To the firebase by email
   String? picUrl; //this give us the URL for the pic
   String? picPrice; //this give us the Pricefor the pic
@@ -105,22 +124,22 @@ class AlertPage extends StatelessWidget {
   final imageUrlControl = TextEditingController();
   final priceConrol = TextEditingController();
   @override
-  String? picUrl; //this give us the URL for the pic
-  String? picPrice; //this give us the Pricefor the pic
+  late String picUrl; //this give us the URL for the pic
+  late String picPrice; //this give us the Pricefor the pic
   Widget build(BuildContext context) {
     return AlertDialog(
       content: Column(
         children: [
           MyTextBox(
               onChanged: (value) {
-                picUrl = value;
+                picUrl = value!;
               },
               contlr: imageUrlControl,
               hintText: "Image URL",
               scureText: false),
           MyTextBox(
               onChanged: (value) {
-                picUrl = value;
+                picPrice = value!;
               },
               contlr: priceConrol,
               hintText: "Price",
@@ -128,13 +147,12 @@ class AlertPage extends StatelessWidget {
           MyButton(
               color: Colors.green,
               onPressed: (() {
-                print(signInUser);
                 imageUrlControl.clear();
                 priceConrol.clear();
                 _firestore.collection("stuff").add(
                   {
-                    "price": picPrice,
-                    "url": picUrl,
+                    "price": picPrice.toString(),
+                    "url": picUrl.toString(),
                   },
                 );
               }),

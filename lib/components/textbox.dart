@@ -9,16 +9,16 @@ class MyTextBox extends StatelessWidget {
     this.textType,
     this.onChanged,
   }) : super(key: key);
-
+  String? picUrl; //this give us the URL for the pic
+  String? picPrice; //this give us the Pricefor the pic
   final TextEditingController contlr;
   final String? hintText;
   bool scureText = false;
   TextInputType? textType;
-  Function? onChanged;
+  Function? onChanged = (value) {};
   @override
   Widget build(BuildContext context) {
     return TextField(
-      onChanged: ((value) {}),
       keyboardType: textType,
       obscureText: scureText,
       controller: contlr,
