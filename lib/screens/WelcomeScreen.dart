@@ -29,7 +29,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             MyButton(
                 color: Colors.blue,
                 onPressed: (() {
-                  Navigator.pushNamed(context, RegisterPage.screenRoute);
+                  showDialog(
+                      context: context,
+                      builder: ((context) {
+                        return RegisterPage();
+                      }));
                 }),
                 title: "Sign up"),
             MyButton(
