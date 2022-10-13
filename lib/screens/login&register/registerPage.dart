@@ -1,5 +1,6 @@
 import 'package:case_store/components/my_button.dart';
 import 'package:case_store/components/textbox.dart';
+import 'package:case_store/screens/WelcomeScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
@@ -54,6 +55,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   UserCredential myUser =
                       await authenticationobject.createUserWithEmailAndPassword(
                           email: email.text, password: password.text);
+                  if (myUser != null) {
+                    Navigator.pushNamed(context, WelcomeScreen.screenRoute);
+                  }
                   ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text("added successfully")));
                 } catch (e) {
