@@ -1,4 +1,5 @@
 import 'package:case_store/components/my_button.dart';
+import 'package:case_store/components/textbox.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
@@ -29,86 +30,19 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 25,
             ),
             Text("email"),
-            TextField(
-              controller: email,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                hintText: "Enter Your Email",
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 20,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(100),
-                  ),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.orange, width: 1),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(100),
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.blue,
-                    width: 2,
-                  ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(100),
-                  ),
-                ),
-              ),
-            ),
+            MyTextBox(
+                textType: TextInputType.emailAddress,
+                contlr: email,
+                hintText: "Enter your email",
+                scureText: false),
             SizedBox(
               height: 30,
             ),
             Text("password"),
-            TextField(
-              obscureText: true,
-              controller: password,
-              decoration: InputDecoration(
-                hintText: "Enter Your Passsord",
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 20,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(100),
-                  ),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.orange, width: 1),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(100),
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.blue,
-                    width: 2,
-                  ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(100),
-                  ),
-                ),
-              ),
-              // onSubmitted: (value) async {
-              //   try {
-              //     var authenticationobject = FirebaseAuth.instance;
-
-              //     UserCredential myUser = await authenticationobject
-              //         .createUserWithEmailAndPassword(
-              //             email: email.text, password: password.text);
-              //     ScaffoldMessenger.of(context).showSnackBar(
-              //         SnackBar(content: Text("added successfully")));
-              //   } catch (e) {
-              //     ScaffoldMessenger.of(context).showSnackBar(
-              //         SnackBar(content: Text("sorry there is an error")));
-              //   }
-              // },
-            ),
+            MyTextBox(
+                contlr: password,
+                hintText: "Enter your password",
+                scureText: true),
             Divider(height: 25),
             MyButton(
               color: Colors.green[800]!,
