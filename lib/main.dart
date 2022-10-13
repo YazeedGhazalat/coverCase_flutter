@@ -1,10 +1,15 @@
+import 'package:case_store/firebase_options.dart';
 import 'package:case_store/screens/WelcomeScreen.dart';
 import 'package:case_store/screens/login&register/loginPage.dart';
 import 'package:case_store/screens/login&register/registerPage.dart';
 import 'package:case_store/screens/storePage.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(MaterialApp(
     home: const MyApp(),
     debugShowCheckedModeBanner: false,
