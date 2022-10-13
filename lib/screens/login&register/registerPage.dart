@@ -94,20 +94,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
               ),
-              // onSubmitted: (value) async {
-              //   try {
-              //     var authenticationobject = FirebaseAuth.instance;
-
-              //     UserCredential myUser = await authenticationobject
-              //         .createUserWithEmailAndPassword(
-              //             email: email.text, password: password.text);
-              //     ScaffoldMessenger.of(context).showSnackBar(
-              //         SnackBar(content: Text("added successfully")));
-              //   } catch (e) {
-              //     ScaffoldMessenger.of(context).showSnackBar(
-              //         SnackBar(content: Text("sorry there is an error")));
-              //   }
-              // },
             ),
             Divider(height: 25),
             MyButton(
