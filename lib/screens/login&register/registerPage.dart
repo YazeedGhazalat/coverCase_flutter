@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
+import '../storePage.dart';
+
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
   static const String screenRoute = "register";
@@ -19,107 +21,97 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+      ),
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Container(
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(80),
-                    )),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
+        children: [
+          Container(
+            alignment: Alignment.topCenter,
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              color: Colors.black,
+            ),
+            child: Text(
+              "Register",
+              style: TextStyle(color: Colors.white, fontSize: 40),
+            ),
+          ),
+          Positioned(
+            top: 150,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(100),
+                  )),
+              height: 700,
+              width: 400,
+              child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "REGISTER",
-                      style: TextStyle(color: Colors.white, fontSize: 40),
+                    SizedBox(
+                      height: 100,
                     ),
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 8,
-              child: Container(
-                color: Colors.black,
-                child: Container(
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(100),
-                      )),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Center(
-                          child: Text(
-                            "Register",
-                            style: TextStyle(fontSize: 25),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 25,
-                        ),
-                        Text(
-                          "email",
-                          style: TextStyle(fontSize: 18),
-                        ),
-                        MyTextBox(
-                            textType: TextInputType.emailAddress,
-                            contlr: email,
-                            hintText: "Enter your email",
-                            scureText: false),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Text(
-                          "password",
-                          style: TextStyle(fontSize: 18),
-                        ),
-                        MyTextBox(
-                            contlr: password,
-                            hintText: "Enter your password",
-                            scureText: true),
-                        SizedBox(height: 30),
-                        MyButton(
-                          color: Colors.black,
-                          title: "Register",
-                          onPressed: () async {
-                            try {
-                              var authenticationobject = FirebaseAuth.instance;
+                    Text(
+                      "Email",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: MyTextBox(
+                          textType: TextInputType.emailAddress,
+                          contlr: email,
+                          hintText: "Enter your email",
+                          scureText: false),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Text(
+                      "Password",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: MyTextBox(
+                          contlr: password,
+                          hintText: "Enter your password",
+                          scureText: true),
+                    ),
+                    SizedBox(height: 30),
+                    MyButton(
+                      color: Colors.black,
+                      title: "Register",
+                      onPressed: () async {
+                        try {
+                          var authenticationobject = FirebaseAuth.instance;
 
-                              UserCredential myUser = await authenticationobject
-                                  .createUserWithEmailAndPassword(
-                                      email: email.text,
-                                      password: password.text);
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content: Text("added successfully")));
-                            } catch (e) {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(content: Text("$e")));
-                            }
-                          },
-                        ),
-                        SizedBox(height: 25),
-                        TextButton(
-                          child: Text("Already have any account ! Sign In",
-                              style: TextStyle(color: Colors.black)),
-                          onPressed: () async {},
-                        ),
-                      ]),
-                ),
-              ),
+                          UserCredential myUser = await authenticationobject
+                              .createUserWithEmailAndPassword(
+                                  email: email.text, password: password.text);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text("added successfully")));
+                          if (myUser != null) {
+                            Navigator.pushNamed(context, StorePage.screenRoute);
+                          }
+                        } catch (e) {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(SnackBar(content: Text("$e")));
+                        }
+                      },
+                    ),
+                    SizedBox(height: 25),
+                    TextButton(
+                      child: Text("Don't have any account ! Sign Up",
+                          style: TextStyle(color: Colors.black)),
+                      onPressed: () async {},
+                    ),
+                  ]),
             ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
