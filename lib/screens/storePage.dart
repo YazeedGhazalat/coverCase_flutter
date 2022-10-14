@@ -1,4 +1,5 @@
 import 'package:case_store/components/my_button.dart';
+import 'package:case_store/components/storeWidget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -48,66 +49,12 @@ class _StorePageState extends State<StorePage> {
       ),
       appBar: AppBar(),
       body: SafeArea(
-        child: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-                height: 200,
-                width: 200,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                        blurStyle: BlurStyle.outer,
-                        color: Colors.black,
-                        blurRadius: 25.0,
-                        spreadRadius: 5.0,
-                        offset: Offset.zero)
-                  ],
-                  border: Border.all(
-                    width: 3,
-                    strokeAlign: StrokeAlign.center,
-                  ),
-                ),
-                child: Hero(
-                  tag: "Image",
-                  child: Image.network(
-                    "https://w7.pngwing.com/pngs/870/532/png-transparent-apple-smart-case-for-9-7-inch-ipad-pro-iphone-7-apple-iphone-x-silicone-case-apple-iphone-x-leather-case-mobile-phone-accessories-mobile-case-rectangle-mobile-phone-case-mobile-phone-thumbnail.png",
-                    height: double.maxFinite,
-                    width: double.maxFinite,
-                  ),
-                )),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                storeButtton(myicon: Icons.favorite, onpressed: () {}),
-                Divider(
-                  indent: 10,
-                  thickness: 0,
-                ),
-                storeButtton(myicon: Icons.info, onpressed: () {}),
-                Divider(
-                  indent: 10,
-                  thickness: 0,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                storeButtton(myicon: Icons.add_shopping_cart, onpressed: () {}),
-              ],
-            )
-          ],
-        )),
-      ),
+          child: Center(
+        child: itemPicPrice(
+            picURL:
+                "https://w7.pngwing.com/pngs/870/532/png-transparent-apple-smart-case-for-9-7-inch-ipad-pro-iphone-7-apple-iphone-x-silicone-case-apple-iphone-x-leather-case-mobile-phone-accessories-mobile-case-rectangle-mobile-phone-case-mobile-phone-thumbnail.png",
+            pricePic: "20\$"),
+      )),
     );
   }
 }
