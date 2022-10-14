@@ -6,9 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
 class itemPicPrice extends StatelessWidget {
-  late DocumentReference _documentReference =
-      FirebaseFirestore.instance.collection("stuff").doc();
-  late Future<DocumentSnapshot> _futureDocument = _documentReference.get();
   itemPicPrice({
     super.key,
   });
