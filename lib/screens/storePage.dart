@@ -121,8 +121,8 @@ class AlertPage extends StatelessWidget {
   final _auth = FirebaseAuth.instance;
 
   @override
-  String? picUrl; //this give us the URL for the pic
-  String? picPrice; //this give us the Pricefor the pic
+  late String picUrl; //this give us the URL for the pic
+  late String picPrice; //this give us the Pricefor the pic
   Widget build(BuildContext context) {
     return AlertDialog(
       content: Column(
