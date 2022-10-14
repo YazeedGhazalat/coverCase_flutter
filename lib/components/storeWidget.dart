@@ -1,9 +1,8 @@
 import 'package:case_store/components/my_button.dart';
-import 'package:case_store/components/storeWidget.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 
 class itemPicPrice extends StatelessWidget {
   itemPicPrice({
@@ -31,9 +30,11 @@ class itemPicPrice extends StatelessWidget {
                 for (var stuff in stuffs) {
                   final stuffPrice = stuff['price'];
                   final stuffUrl = stuff['url'];
+                  final stuffID = stuff['id'];
                   final stuffWidget = PicWidget(
                     picURL: stuffUrl,
                     pricePic: stuffPrice,
+                    ID: stuffID,
                   );
                   stuffWidgets.add(stuffWidget);
                 }
@@ -49,9 +50,10 @@ class itemPicPrice extends StatelessWidget {
 }
 
 class PicWidget extends StatelessWidget {
-  PicWidget({super.key, required this.picURL, required this.pricePic});
+  PicWidget({super.key, required this.picURL, required this.pricePic, this.ID});
   String? picURL;
   String? pricePic;
+  String? ID;
   @override
   Widget build(BuildContext context) {
     return Column(
