@@ -83,6 +83,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     SizedBox(height: 30),
                     MyButton(
+                      fontsize: 15,
+                      Fontcolor: Colors.white,
                       color: Colors.black,
                       title: "Register",
                       onPressed: () async {

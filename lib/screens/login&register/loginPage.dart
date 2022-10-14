@@ -1,9 +1,7 @@
 import 'package:case_store/components/my_button.dart';
 import 'package:case_store/components/textbox.dart';
-import 'package:case_store/screens/WelcomeScreen.dart';
 import 'package:case_store/screens/login&register/registerPage.dart';
 import 'package:case_store/screens/storePage.dart';
-import 'package:case_store/screens/test.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -101,6 +99,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     SizedBox(height: 30),
                     MyButton(
+                      fontsize: 15,
+                      Fontcolor: Colors.white,
                       color: Colors.black,
                       title: "Login",
                       onPressed: () async {

@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget {
-  MyButton({required this.color, required this.onPressed, required this.title});
+  MyButton(
+      {this.fontsize,
+      this.Fontcolor,
+      required this.color,
+      required this.onPressed,
+      required this.title});
   final Color color;
+  final Color? Fontcolor;
   final String title;
   final VoidCallback onPressed;
+  final double? fontsize;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,7 +26,7 @@ class MyButton extends StatelessWidget {
           minWidth: 200,
           child: Text(
             title,
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(fontSize: fontsize, color: Fontcolor),
           ),
         ),
       ),

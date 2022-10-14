@@ -151,7 +151,7 @@ class PicWidget extends StatelessWidget {
                 myicon: Icons.update,
                 onpressed: () async {
                   final washingtonRef = _firestore.collection("stuff").doc(ID);
-                  washingtonRef.update({"capital": true}).then(
+                  washingtonRef.update({"price": "1"}).then(
                       (value) =>
                           print("DocumentSnapshot successfully updated!"),
                       onError: (e) => print("Error updating document $e"));
