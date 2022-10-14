@@ -3,6 +3,7 @@ import 'package:case_store/screens/WelcomeScreen.dart';
 import 'package:case_store/screens/login&register/loginPage.dart';
 import 'package:case_store/screens/login&register/registerPage.dart';
 import 'package:case_store/screens/storePage.dart';
+import 'package:case_store/screens/test.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ void main() async {
       LoginPage.screenRoute: (context) => LoginPage(),
       RegisterPage.screenRoute: (context) => RegisterPage(),
       WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
-      StorePage.screenRoute: (context) => StorePage()
+      StorePage.screenRoute: (context) => StorePage(),
     },
   ));
 }

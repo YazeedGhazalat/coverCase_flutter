@@ -3,6 +3,7 @@ import 'package:case_store/components/storeWidget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 final _firestore = FirebaseFirestore.instance;
 late User signInUser; //this give us the email
@@ -34,9 +35,34 @@ class _StorePageState extends State<StorePage> {
     }
   }
 
+  void PcStream() async {
+    await for (var snapshot in _firestore.collection("messages").snapshots()) {
+      for (var message in snapshot.docs) {
+        print(message.data());
+      }
+    }
+  }
+
+  void getMessages() async {
+    final pics = await _firestore.collection('stuff').get();
+
+    for (var pic in pics.docs) {
+      print(pic.data());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: (() {
+                getMessages();
+              }),
+              icon: Icon(Ionicons.add_circle))
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
@@ -47,7 +73,6 @@ class _StorePageState extends State<StorePage> {
               }));
         },
       ),
-      appBar: AppBar(),
       body: SafeArea(
           child: Center(
         child: itemPicPrice(
