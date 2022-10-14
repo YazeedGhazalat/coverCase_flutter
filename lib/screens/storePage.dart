@@ -104,7 +104,7 @@ class AlertPage extends StatelessWidget {
   late String picPrice; //this give us the Pricefor the pic
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: Column(
+      title: Column(
         children: [
           TextField(
             onChanged: ((value) {
@@ -112,7 +112,7 @@ class AlertPage extends StatelessWidget {
             }),
             controller: imageUrlControl,
             decoration: InputDecoration(
-              hintText: "Add picture Url",
+              hintText: "Add picture #",
               contentPadding: EdgeInsets.symmetric(
                 vertical: 10,
                 horizontal: 20,
@@ -138,6 +138,9 @@ class AlertPage extends StatelessWidget {
                 ),
               ),
             ),
+          ),
+          SizedBox(
+            height: 10,
           ),
           TextField(
             onChanged: ((value) {
