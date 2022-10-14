@@ -171,6 +171,7 @@ class AlertPage extends StatelessWidget {
                   {
                     'price': picPrice.toString(),
                     'url': picUrl.toString(),
+                    'time': FieldValue.serverTimestamp(),
                   },
                 );
               }),
