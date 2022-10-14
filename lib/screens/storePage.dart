@@ -71,10 +71,9 @@ class _StorePageState extends State<StorePage> {
       ),
       body: SafeArea(
           child: Center(
-        child: itemPicPrice(
-            picURL:
-                "https://w7.pngwing.com/pngs/870/532/png-transparent-apple-smart-case-for-9-7-inch-ipad-pro-iphone-7-apple-iphone-x-silicone-case-apple-iphone-x-leather-case-mobile-phone-accessories-mobile-case-rectangle-mobile-phone-case-mobile-phone-thumbnail.png",
-            pricePic: "20\$"),
+        child: SingleChildScrollView(
+          child: itemPicPrice(),
+        ),
       )),
     );
   }
