@@ -84,8 +84,8 @@ class PicWidget extends StatelessWidget {
           ),
           child: Hero(
             tag: "Image",
-            child: Image.network(
-              "$picURL",
+            child: Image.asset(
+              "images/$picURL.jpg",
               height: double.maxFinite,
               width: double.maxFinite,
             ),
@@ -114,7 +114,7 @@ class PicWidget extends StatelessWidget {
             ),
           ),
           child: Text(
-            "$pricePic",
+            "$pricePic\$",
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 30, color: Colors.black),
           ),
