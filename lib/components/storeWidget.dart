@@ -150,11 +150,13 @@ class PicWidget extends StatelessWidget {
             storeButtton(
                 myicon: Icons.update,
                 onpressed: () async {
-                  final washingtonRef = _firestore.collection("stuff").doc(ID);
-                  washingtonRef.update({"capital": true}).then(
-                      (value) =>
-                          print("DocumentSnapshot successfully updated!"),
-                      onError: (e) => print("Error updating document $e"));
+                  showDialog(
+                      context: context,
+                      builder: ((context) {
+                        return AlertPage(
+                          ID: ID,
+                        );
+                      }));
                 }),
           ],
         ),
@@ -162,6 +164,107 @@ class PicWidget extends StatelessWidget {
           height: 10,
         ),
       ],
+    );
+  }
+}
+
+class AlertPage extends StatelessWidget {
+  AlertPage({
+    this.ID,
+    Key? key,
+  }) : super(key: key);
+  final imageUrlControl = TextEditingController();
+  final priceConrol = TextEditingController();
+  String? ID;
+  @override
+  late String picUrl; //this give us the URL for the pic
+  late String picPrice; //this give us the Pricefor the pic
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Column(
+        children: [
+          TextField(
+            onChanged: ((value) {
+              picUrl = value;
+            }),
+            controller: imageUrlControl,
+            decoration: InputDecoration(
+              hintText: "Add picture #",
+              contentPadding: EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 20,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.orange, width: 1),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.blue,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          TextField(
+            onChanged: ((value) {
+              picPrice = value;
+            }),
+            controller: priceConrol,
+            decoration: InputDecoration(
+              hintText: "Add price",
+              contentPadding: EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 20,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.orange, width: 1),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.blue,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+            ),
+          ),
+          MyButton(
+              color: Colors.green,
+              onPressed: (() {
+                final washingtonRef = _firestore.collection("stuff").doc(ID);
+                washingtonRef
+                    .update({"price": "$picPrice", "url": "$picUrl"}).then(
+                        (value) =>
+                            print("DocumentSnapshot successfully updated!"),
+                        onError: (e) => print("Error updating document $e"));
+              }),
+              title: "Update item")
+        ],
+      ),
     );
   }
 }
