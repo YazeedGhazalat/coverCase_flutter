@@ -70,17 +70,18 @@ class PicWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: Colors.white,
+            border: Border.all(
+              width: 0,
+              strokeAlign: StrokeAlign.outside,
+            ),
             boxShadow: [
               BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
+                  blurStyle: BlurStyle.outer,
+                  color: Colors.black,
                   blurRadius: 25.0,
-                  spreadRadius: 20.0,
+                  spreadRadius: 10.0,
                   offset: Offset.zero)
             ],
-            border: Border.all(
-              width: 3,
-              strokeAlign: StrokeAlign.center,
-            ),
           ),
           child: Hero(
             tag: "Image",
@@ -92,7 +93,7 @@ class PicWidget extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 10,
+          height: 20,
         ),
         Container(
           alignment: Alignment.center,
@@ -110,7 +111,7 @@ class PicWidget extends StatelessWidget {
             ],
             border: Border.all(
               width: 0,
-              strokeAlign: StrokeAlign.center,
+              strokeAlign: StrokeAlign.outside,
             ),
           ),
           child: Text(
@@ -140,7 +141,10 @@ class PicWidget extends StatelessWidget {
             ),
             storeButtton(myicon: Icons.update, onpressed: () {}),
           ],
-        )
+        ),
+        SizedBox(
+          height: 10,
+        ),
       ],
     );
   }

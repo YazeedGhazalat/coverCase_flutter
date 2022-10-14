@@ -56,6 +56,9 @@ class _StorePageState extends State<StorePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        elevation: 5,
+        backgroundColor: Colors.black.withAlpha(100),
         actions: [
           IconButton(
               onPressed: (() {
@@ -67,6 +70,8 @@ class _StorePageState extends State<StorePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black.withAlpha(100),
+        elevation: 20,
         child: Icon(Icons.add),
         onPressed: () {
           showDialog(
