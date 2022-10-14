@@ -63,7 +63,7 @@ class _StorePageState extends State<StorePage> {
                 Navigator.pushReplacementNamed(
                     context, WelcomeScreen.screenRoute);
               }),
-              icon: Icon(Ionicons.add_circle))
+              icon: Icon(Ionicons.log_out))
         ],
       ),
       floatingActionButton: FloatingActionButton(
