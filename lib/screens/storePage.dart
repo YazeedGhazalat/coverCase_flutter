@@ -36,7 +36,7 @@ class _StorePageState extends State<StorePage> {
   }
 
   void PcStream() async {
-    await for (var snapshot in _firestore.collection("messages").snapshots()) {
+    await for (var snapshot in _firestore.collection("stuff").snapshots()) {
       for (var message in snapshot.docs) {
         print(message.data());
       }
@@ -56,11 +56,7 @@ class _StorePageState extends State<StorePage> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(
-              onPressed: (() {
-                getMessages();
-              }),
-              icon: Icon(Ionicons.add_circle))
+          IconButton(onPressed: (() {}), icon: Icon(Ionicons.add_circle))
         ],
       ),
       floatingActionButton: FloatingActionButton(
