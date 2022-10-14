@@ -74,6 +74,26 @@ class _LoginPageState extends State<LoginPage> {
                     Padding(
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       child: MyTextBox(
+                          onsubmet: (p0) async {
+                            try {
+                              var authenticationobject = FirebaseAuth.instance;
+
+                              UserCredential myUser = await authenticationobject
+                                  .signInWithEmailAndPassword(
+                                      email: email.text,
+                                      password: password.text);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text("login successfully")));
+                              if (myUser != null) {
+                                Navigator.pushNamed(
+                                    context, StorePage.screenRoute);
+                              }
+                            } catch (e) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(content: Text("$e")));
+                            }
+                          },
                           contlr: password,
                           hintText: "Enter your password",
                           scureText: true),
@@ -90,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                               .signInWithEmailAndPassword(
                                   email: email.text, password: password.text);
                           ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("added successfully")));
+                              SnackBar(content: Text("login successfully")));
                           if (myUser != null) {
                             Navigator.pushNamed(context, StorePage.screenRoute);
                           }

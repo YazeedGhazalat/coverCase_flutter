@@ -6,6 +6,7 @@ class MyTextBox extends StatelessWidget {
     required this.contlr,
     required this.hintText,
     required this.scureText,
+    this.onsubmet,
     this.textType,
     this.onChanged,
   }) : super(key: key);
@@ -15,10 +16,12 @@ class MyTextBox extends StatelessWidget {
   final String? hintText;
   bool scureText = false;
   TextInputType? textType;
-  Function? onChanged = (value) {};
+  Function? onChanged;
+  void Function(String)? onsubmet = (value) {};
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onSubmitted: onsubmet,
       keyboardType: textType,
       obscureText: scureText,
       controller: contlr,
