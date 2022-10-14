@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                             scureText: true),
                         SizedBox(height: 30),
                         MyButton(
-                          color: Colors.black!,
+                          color: Colors.black,
                           title: "Login",
                           onPressed: () async {
                             try {
@@ -101,6 +101,10 @@ class _LoginPageState extends State<LoginPage> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                       content: Text("added successfully")));
+                              if (myUser != null) {
+                                Navigator.pushNamed(
+                                    context, StorePage.screenRoute);
+                              }
                             } catch (e) {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(content: Text("$e")));

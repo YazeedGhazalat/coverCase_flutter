@@ -1,9 +1,7 @@
 import 'package:case_store/components/my_button.dart';
-import 'package:case_store/components/textbox.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 
 final _firestore = FirebaseFirestore.instance;
 late User signInUser; //this give us the email
@@ -80,7 +78,7 @@ class _StorePageState extends State<StorePage> {
                 child: Hero(
                   tag: "Image",
                   child: Image.network(
-                    "https://cdn.cliqueinc.com/posts/294899/designer-phone-cases-294899-1650040053070-main.1200x0c.jpg?interlace=true&quality=70",
+                    "https://w7.pngwing.com/pngs/870/532/png-transparent-apple-smart-case-for-9-7-inch-ipad-pro-iphone-7-apple-iphone-x-silicone-case-apple-iphone-x-leather-case-mobile-phone-accessories-mobile-case-rectangle-mobile-phone-case-mobile-phone-thumbnail.png",
                     height: double.maxFinite,
                     width: double.maxFinite,
                   ),
@@ -135,7 +133,7 @@ class AlertPage extends StatelessWidget {
             }),
             controller: imageUrlControl,
             decoration: InputDecoration(
-              hintText: "Add price",
+              hintText: "Add picture Url",
               contentPadding: EdgeInsets.symmetric(
                 vertical: 10,
                 horizontal: 20,

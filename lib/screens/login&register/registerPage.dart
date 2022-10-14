@@ -64,7 +64,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             style: TextStyle(fontSize: 25),
                           ),
                         ),
-                        Divider(
+                        SizedBox(
                           height: 25,
                         ),
                         Text(
@@ -89,14 +89,14 @@ class _RegisterPageState extends State<RegisterPage> {
                             scureText: true),
                         SizedBox(height: 30),
                         MyButton(
-                          color: Colors.black!,
+                          color: Colors.black,
                           title: "Register",
                           onPressed: () async {
                             try {
                               var authenticationobject = FirebaseAuth.instance;
 
                               UserCredential myUser = await authenticationobject
-                                  .signInWithEmailAndPassword(
+                                  .createUserWithEmailAndPassword(
                                       email: email.text,
                                       password: password.text);
                               ScaffoldMessenger.of(context).showSnackBar(
