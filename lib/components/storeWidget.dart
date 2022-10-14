@@ -20,10 +20,7 @@ class itemPicPrice extends StatelessWidget {
           height: 10,
         ),
         StreamBuilder(
-            stream: FirebaseFirestore.instance
-                .collection("stuff")
-                .orderBy('time')
-                .snapshots(),
+            stream: FirebaseFirestore.instance.collection("stuff").snapshots(),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return Text("there is an error");
@@ -34,11 +31,9 @@ class itemPicPrice extends StatelessWidget {
                 for (var stuff in stuffs) {
                   final stuffPrice = stuff['price'];
                   final stuffUrl = stuff['url'];
-                  final stuffTime = stuff.get('time');
                   final stuffWidget = PicWidget(
                     picURL: stuffUrl,
                     pricePic: stuffPrice,
-                    time: stuffTime.toString(),
                   );
                   stuffWidgets.add(stuffWidget);
                 }
@@ -54,15 +49,9 @@ class itemPicPrice extends StatelessWidget {
 }
 
 class PicWidget extends StatelessWidget {
-  PicWidget({
-    super.key,
-    required this.picURL,
-    required this.pricePic,
-    required this.time,
-  });
+  PicWidget({super.key, required this.picURL, required this.pricePic});
   String? picURL;
   String? pricePic;
-  final String? time;
   @override
   Widget build(BuildContext context) {
     return Column(
