@@ -26,14 +26,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             children: [
               MyButton(
                   fontsize: 20,
-                  color: Colors.grey.withAlpha(200),
+                  Fontcolor: Colors.black,
+                  color: Color.fromRGBO(239, 239, 239, 1),
                   onPressed: (() {
                     Navigator.pushNamed(context, LoginPage.screenRoute);
                   }),
                   title: "Login"),
               MyButton(
                   fontsize: 20,
-                  color: Colors.grey.withAlpha(200),
+                  Fontcolor: Colors.black,
+                  color: Color.fromRGBO(239, 239, 239, 1),
                   onPressed: (() {
                     showDialog(
                         context: context,
@@ -43,8 +45,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   }),
                   title: "Sign up"),
               MyButton(
+                  Fontcolor: Colors.black,
+                  color: Color.fromRGBO(239, 239, 239, 1),
                   fontsize: 20,
-                  color: Colors.grey.withAlpha(200),
                   onPressed: (() {
                     Navigator.pushNamed(context, StorePage.screenRoute);
                   }),

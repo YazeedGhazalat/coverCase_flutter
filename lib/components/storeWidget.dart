@@ -150,11 +150,13 @@ class PicWidget extends StatelessWidget {
             storeButtton(
                 myicon: Icons.update,
                 onpressed: () async {
-                  final washingtonRef = _firestore.collection("stuff").doc(ID);
-                  washingtonRef.update({"price": "1"}).then(
-                      (value) =>
-                          print("DocumentSnapshot successfully updated!"),
-                      onError: (e) => print("Error updating document $e"));
+                  showDialog(
+                      context: context,
+                      builder: ((context) {
+                        return AlertPage(
+                          ID: ID,
+                        );
+                      }));
                 }),
           ],
         ),
@@ -162,6 +164,162 @@ class PicWidget extends StatelessWidget {
           height: 10,
         ),
       ],
+    );
+  }
+}
+
+class AlertPage extends StatefulWidget {
+  AlertPage({
+    this.ID,
+    Key? key,
+  }) : super(key: key);
+  String? ID;
+
+  @override
+  State<AlertPage> createState() => _AlertPageState();
+}
+
+class _AlertPageState extends State<AlertPage> {
+  final imageUrlControl = TextEditingController();
+
+  final priceConrol = TextEditingController();
+
+  @override
+  late String picUrl;
+  //this give us the URL for the pic
+  late String picPrice;
+  //this give us the Pricefor the pic
+  bool PriceCheck = false;
+
+  bool PicChek = false;
+
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 200),
+            child: Checkbox(
+                value: PicChek,
+                onChanged: ((value) {
+                  setState(() {
+                    PicChek = !PicChek;
+                  });
+                })),
+          ),
+          TextField(
+            onChanged: ((value) {
+              picUrl = value;
+            }),
+            controller: imageUrlControl,
+            decoration: InputDecoration(
+              hintText: "Add picture #",
+              contentPadding: EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 20,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.orange, width: 1),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.blue,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 200),
+            child: Checkbox(
+                value: PriceCheck,
+                onChanged: ((value) {
+                  setState(() {
+                    PriceCheck = !PriceCheck;
+                  });
+                })),
+          ),
+          TextField(
+            onChanged: ((value) {
+              picPrice = value;
+            }),
+            controller: priceConrol,
+            decoration: InputDecoration(
+              hintText: "Add price",
+              contentPadding: EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 20,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.orange, width: 1),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.blue,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+            ),
+          ),
+          MyButton(
+              color: Colors.green,
+              onPressed: (() {
+                if (PicChek && !PriceCheck) {
+                  final updatedPic =
+                      _firestore.collection("stuff").doc(widget.ID);
+                  updatedPic.update({"url": "$picUrl"}).then(
+                      (value) =>
+                          print("DocumentSnapshot successfully updated!"),
+                      onError: (e) => print("Error updating document $e"));
+                } else if (!PicChek && PriceCheck) {
+                  final updatedPrice =
+                      _firestore.collection("stuff").doc(widget.ID);
+                  updatedPrice.update({
+                    "price": "$picPrice",
+                  }).then(
+                      (value) =>
+                          print("DocumentSnapshot successfully updated!"),
+                      onError: (e) => print("Error updating document $e"));
+                } else if (PriceCheck == true && PicChek == true) {
+                  final updatedPrice =
+                      _firestore.collection("stuff").doc(widget.ID);
+                  updatedPrice.update({
+                    "url": "$picUrl",
+                    "price": "$picPrice",
+                  }).then(
+                      (value) =>
+                          print("DocumentSnapshot successfully updated!"),
+                      onError: (e) => print("Error updating document $e"));
+                }
+              }),
+              title: "Update item")
+        ],
+      ),
     );
   }
 }
