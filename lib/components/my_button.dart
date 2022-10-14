@@ -28,20 +28,20 @@ class MyButton extends StatelessWidget {
 }
 
 class storeButtton extends StatelessWidget {
-  const storeButtton({
+  storeButtton({
     required this.myicon,
     required this.onpressed,
     Key? key,
   }) : super(key: key);
   final IconData? myicon;
-  final Function? onpressed;
+  final VoidCallback onpressed;
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       shape: ContinuousRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
-      onPressed: () {},
+      onPressed: onpressed,
       height: 40,
       splashColor: Colors.amber,
       color: Colors.white,

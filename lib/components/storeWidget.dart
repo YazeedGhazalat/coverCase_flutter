@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
 
+final _firestore = FirebaseFirestore.instance;
+
 class itemPicPrice extends StatelessWidget {
   itemPicPrice({
     super.key,
@@ -130,7 +132,14 @@ class PicWidget extends StatelessWidget {
               indent: 10,
               thickness: 0,
             ),
-            storeButtton(myicon: Icons.delete, onpressed: () {}),
+            storeButtton(
+                myicon: Icons.delete,
+                onpressed: () async {
+                  await _firestore.collection("stuff").doc(ID).delete().then(
+                        (doc) => print("Document deleted"),
+                        onError: (e) => print("Error updating document $e"),
+                      );
+                }),
             Divider(
               indent: 10,
               thickness: 0,
@@ -138,7 +147,15 @@ class PicWidget extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            storeButtton(myicon: Icons.update, onpressed: () {}),
+            storeButtton(
+                myicon: Icons.update,
+                onpressed: () async {
+                  final washingtonRef = _firestore.collection("stuff").doc(ID);
+                  washingtonRef.update({"capital": true}).then(
+                      (value) =>
+                          print("DocumentSnapshot successfully updated!"),
+                      onError: (e) => print("Error updating document $e"));
+                }),
           ],
         ),
         SizedBox(
