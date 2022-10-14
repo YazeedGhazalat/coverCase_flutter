@@ -1,6 +1,7 @@
 import 'package:case_store/components/my_button.dart';
 import 'package:case_store/components/textbox.dart';
 import 'package:case_store/screens/WelcomeScreen.dart';
+import 'package:case_store/screens/login&register/registerPage.dart';
 import 'package:case_store/screens/storePage.dart';
 import 'package:case_store/screens/test.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -124,7 +125,9 @@ class _LoginPageState extends State<LoginPage> {
                     TextButton(
                       child: Text("Don't have any account ! Sign Up",
                           style: TextStyle(color: Colors.black)),
-                      onPressed: () async {},
+                      onPressed: () async {
+                        Navigator.pushNamed(context, RegisterPage.screenRoute);
+                      },
                     ),
                   ]),
             ),
