@@ -1,6 +1,7 @@
 import 'package:case_store/components/my_button.dart';
 import 'package:case_store/components/textbox.dart';
 import 'package:case_store/screens/WelcomeScreen.dart';
+import 'package:case_store/screens/login&register/loginPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
@@ -104,9 +105,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     SizedBox(height: 25),
                     TextButton(
-                      child: Text("Don't have any account ! Sign Up",
+                      child: Text("Already have an account ! login",
                           style: TextStyle(color: Colors.black)),
-                      onPressed: () async {},
+                      onPressed: () async {
+                        Navigator.pushNamed(context, LoginPage.screenRoute);
+                      },
                     ),
                   ]),
             ),
