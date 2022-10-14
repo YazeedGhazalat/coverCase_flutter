@@ -7,6 +7,42 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:630296081271:android:a83bed86d5a06c6d39a772",
+        "android_client_info": {
+          "package_name": "at.ymg57.chate_57"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630296081271-phjl3ke5amp4h187161a6c7crktpv5vt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_xLaXdfQk38n_0AZbdG6O6nSd0UphtGA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630296081271-phjl3ke5amp4h187161a6c7crktpv5vt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "630296081271-3vsl334vhk79s2of1v56eqnn16tt1sg5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.caseStore"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:630296081271:android:659403ca12159bd939a772",
         "android_client_info": {
           "package_name": "com.example.case_store"
@@ -29,6 +65,49 @@
             {
               "client_id": "630296081271-phjl3ke5amp4h187161a6c7crktpv5vt.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "630296081271-3vsl334vhk79s2of1v56eqnn16tt1sg5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.caseStore"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630296081271:android:1c326c997f4732e039a772",
+        "android_client_info": {
+          "package_name": "com.example.myapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630296081271-phjl3ke5amp4h187161a6c7crktpv5vt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_xLaXdfQk38n_0AZbdG6O6nSd0UphtGA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630296081271-phjl3ke5amp4h187161a6c7crktpv5vt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "630296081271-3vsl334vhk79s2of1v56eqnn16tt1sg5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.caseStore"
+              }
             }
           ]
         }

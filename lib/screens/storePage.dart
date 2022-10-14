@@ -1,5 +1,6 @@
 import 'package:case_store/components/my_button.dart';
 import 'package:case_store/components/storeWidget.dart';
+import 'package:case_store/screens/WelcomeScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +57,13 @@ class _StorePageState extends State<StorePage> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(onPressed: (() {}), icon: Icon(Ionicons.add_circle))
+          IconButton(
+              onPressed: (() {
+                _auth.signOut();
+                Navigator.pushReplacementNamed(
+                    context, WelcomeScreen.screenRoute);
+              }),
+              icon: Icon(Ionicons.add_circle))
         ],
       ),
       floatingActionButton: FloatingActionButton(
