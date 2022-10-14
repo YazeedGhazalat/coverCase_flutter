@@ -35,13 +35,13 @@ class _StorePageState extends State<StorePage> {
     }
   }
 
-  void PcStream() async {
-    await for (var snapshot in _firestore.collection("messages").snapshots()) {
-      for (var message in snapshot.docs) {
-        print(message.data());
-      }
-    }
-  }
+  // void PcStream() async {
+  //   await for (var snapshot in _firestore.collection("messages").snapshots()) {
+  //     for (var message in snapshot.docs) {
+  //       print(message.data());
+  //     }
+  //   }
+  // }
 
   void getMessages() async {
     final pics = await _firestore.collection('stuff').get();
@@ -56,11 +56,7 @@ class _StorePageState extends State<StorePage> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(
-              onPressed: (() {
-                getMessages();
-              }),
-              icon: Icon(Ionicons.add_circle))
+          IconButton(onPressed: (() {}), icon: Icon(Ionicons.add_circle))
         ],
       ),
       floatingActionButton: FloatingActionButton(
