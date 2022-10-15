@@ -92,13 +92,10 @@ class _PicWidgetState extends State<PicWidget> {
                   offset: Offset.zero)
             ],
           ),
-          child: Hero(
-            tag: "Image",
-            child: Image.asset(
-              "images/${widget.picURL}.jpg",
-              height: double.maxFinite,
-              width: double.maxFinite,
-            ),
+          child: Image.asset(
+            "images/${widget.picURL}.jpg",
+            height: double.maxFinite,
+            width: double.maxFinite,
           ),
         ),
         SizedBox(
