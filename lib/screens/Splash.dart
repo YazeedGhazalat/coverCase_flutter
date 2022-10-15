@@ -22,7 +22,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getData();
     Timer(
@@ -37,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 199, 199, 199),
+        backgroundColor: Color.fromARGB(255, 123, 122, 122),
         body: Column(
           children: [
             SizedBox(
