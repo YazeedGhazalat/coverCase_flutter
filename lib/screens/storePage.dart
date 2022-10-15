@@ -1,11 +1,9 @@
 import 'package:case_store/components/alerts.dart';
-import 'package:case_store/components/my_button.dart';
 import 'package:case_store/components/storeWidget.dart';
 import 'package:case_store/screens/WelcomeScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 
 final _firestore = FirebaseFirestore.instance;
 late User signInUser; //this give us the email
@@ -69,7 +67,7 @@ class _StorePageState extends State<StorePage> {
                 Navigator.pushReplacementNamed(
                     context, WelcomeScreen.screenRoute);
               }),
-              icon: Icon(Ionicons.log_out))
+              icon: Icon(Icons.logout))
         ],
       ),
       floatingActionButton: FloatingActionButton(
