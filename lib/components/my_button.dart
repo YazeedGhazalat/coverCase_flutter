@@ -38,10 +38,12 @@ class storeButtton extends StatelessWidget {
   storeButtton({
     required this.myicon,
     required this.onpressed,
+    this.iconColor,
     Key? key,
   }) : super(key: key);
   final IconData? myicon;
   final VoidCallback onpressed;
+  final Color? iconColor;
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
@@ -54,7 +56,7 @@ class storeButtton extends StatelessWidget {
       color: Colors.white,
       child: Icon(
         myicon,
-        color: Colors.black,
+        color: iconColor,
       ),
       elevation: 20,
     );

@@ -52,11 +52,18 @@ class itemPicPrice extends StatelessWidget {
   }
 }
 
-class PicWidget extends StatelessWidget {
+class PicWidget extends StatefulWidget {
   PicWidget({super.key, required this.picURL, required this.pricePic, this.ID});
   String? picURL;
   String? pricePic;
   String? ID;
+  @override
+  State<PicWidget> createState() => _PicWidgetState();
+}
+
+class _PicWidgetState extends State<PicWidget> {
+  bool like = false;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -88,7 +95,7 @@ class PicWidget extends StatelessWidget {
           child: Hero(
             tag: "Image",
             child: Image.asset(
-              "images/$picURL.jpg",
+              "images/${widget.picURL}.jpg",
               height: double.maxFinite,
               width: double.maxFinite,
             ),
@@ -117,7 +124,7 @@ class PicWidget extends StatelessWidget {
             ),
           ),
           child: Text(
-            "$pricePic\$",
+            "${widget.pricePic}\$",
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 30, color: Colors.black),
           ),
@@ -128,7 +135,14 @@ class PicWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            storeButtton(myicon: Icons.favorite, onpressed: () {}),
+            storeButtton(
+                myicon: Icons.favorite,
+                onpressed: () {
+                  setState(() {
+                    like = !like;
+                  });
+                },
+                iconColor: like ? Colors.red : Colors.black),
             Divider(
               indent: 10,
               thickness: 0,
@@ -136,7 +150,11 @@ class PicWidget extends StatelessWidget {
             storeButtton(
                 myicon: Icons.delete,
                 onpressed: () async {
-                  await _firestore.collection("stuff").doc(ID).delete().then(
+                  await _firestore
+                      .collection("stuff")
+                      .doc(widget.ID)
+                      .delete()
+                      .then(
                         (doc) => print("Document deleted"),
                         onError: (e) => print("Error updating document $e"),
                       );
@@ -155,7 +173,7 @@ class PicWidget extends StatelessWidget {
                       context: context,
                       builder: ((context) {
                         return AlertUpdate(
-                          ID: ID,
+                          ID: widget.ID,
                         );
                       }));
                 }),
