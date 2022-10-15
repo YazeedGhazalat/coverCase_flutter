@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     getData();
     Timer(
-        Duration(seconds: 5),
+        Duration(seconds: 20),
         () => Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) {
               return WelcomeScreen();
@@ -34,39 +34,50 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 123, 122, 122),
-        body: Column(
-          children: [
-            SizedBox(
-              height: 40,
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          height: 800,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage(
+              "images/Home.jpg",
             ),
-            Container(
-              height: 200,
-              width: 200,
-              child:
-                  Image.asset('images/apple-7446229_1280-removebg-preview.png'),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Center(
-              child: Text(
-                "Apple Case Store ",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+            fit: BoxFit.cover,
+          )),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(
+                height: 40,
               ),
-            ),
-            Image(
-                width: 200,
-                height: 200,
-                image: AssetImage("images/giphy-unscreen.gif")),
-          ],
+              // Container(
+              //   height: 200,
+              //   width: 200,
+              //   child: Image.asset(
+              //       'images/apple-7446229_1280-removebg-preview.png'),
+              // ),
+              SizedBox(
+                height: 350,
+              ),
+              // Center(
+              //   child: Text(
+              //     "Apple Case Store ",
+              //     textAlign: TextAlign.center,
+              //     style: TextStyle(
+              //       color: Color.fromARGB(255, 0, 0, 0),
+              //       fontSize: 24,
+              //       fontWeight: FontWeight.bold,
+              //     ),
+              //   ),
+              // ),
+              Image(
+                  width: 200,
+                  height: 200,
+                  image: AssetImage("images/giphy-unscreen.gif")),
+            ],
+          ),
         ),
       ),
     );

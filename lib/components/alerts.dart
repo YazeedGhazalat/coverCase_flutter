@@ -92,6 +92,8 @@ class AlertPage extends StatelessWidget {
             ),
           ),
           MyButton(
+              fontsize: 20,
+              Fontcolor: Colors.white,
               color: Colors.green,
               onPressed: (() {
                 print(signInUser.email);
@@ -239,6 +241,8 @@ class _AlertUpdateState extends State<AlertUpdate> {
             ),
           ),
           MyButton(
+              fontsize: 20,
+              Fontcolor: Colors.white,
               color: Colors.green,
               onPressed: (() {
                 if (PicChek && !PriceCheck) {

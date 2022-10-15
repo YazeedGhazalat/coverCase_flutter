@@ -52,7 +52,7 @@ class storeButtton extends StatelessWidget {
       ),
       onPressed: onpressed,
       height: 40,
-      splashColor: Colors.amber,
+      splashColor: Color.fromARGB(255, 24, 44, 96),
       color: Colors.white,
       child: Icon(
         myicon,

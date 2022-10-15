@@ -9,6 +9,7 @@ class MyTextBox extends StatelessWidget {
     this.onsubmet,
     this.textType,
     this.onChanged,
+    this.label,
   }) : super(key: key);
   String? picUrl; //this give us the URL for the pic
   String? picPrice; //this give us the Pricefor the pic
@@ -17,6 +18,7 @@ class MyTextBox extends StatelessWidget {
   bool scureText = false;
   TextInputType? textType;
   Function? onChanged;
+  String? label;
   void Function(String)? onsubmet = (value) {};
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class MyTextBox extends StatelessWidget {
       obscureText: scureText,
       controller: contlr,
       decoration: InputDecoration(
+        label: Text("$label"),
         hintText: "$hintText",
         contentPadding: EdgeInsets.symmetric(
           vertical: 10,

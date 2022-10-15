@@ -24,6 +24,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(
+                height: 250,
+              ),
               MyButton(
                   fontsize: 20,
                   Fontcolor: Colors.black,
@@ -44,14 +47,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         }));
                   }),
                   title: "Sign up"),
-              MyButton(
-                  Fontcolor: Colors.black,
-                  color: Color.fromRGBO(239, 239, 239, 1),
-                  fontsize: 20,
-                  onPressed: (() {
-                    Navigator.pushNamed(context, StorePage.screenRoute);
-                  }),
-                  title: "Test")
             ],
           ),
         ),

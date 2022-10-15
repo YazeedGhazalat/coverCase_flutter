@@ -19,16 +19,16 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Color.fromRGBO(4, 24, 74, 1),
+        elevation: 0,
       ),
-      backgroundColor: Colors.white,
       body: Stack(
         children: [
           Container(
             alignment: Alignment.topCenter,
             width: double.infinity,
             decoration: const BoxDecoration(
-              color: Colors.black,
+              color: Color.fromRGBO(4, 24, 74, 1),
             ),
             child: Text(
               "LOGIN",
@@ -49,15 +49,12 @@ class _LoginPageState extends State<LoginPage> {
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 100,
-                    ),
-                    Text(
-                      "Email",
-                      style: TextStyle(fontSize: 18),
+                      height: 150,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       child: MyTextBox(
+                          label: "Email",
                           textType: TextInputType.emailAddress,
                           contlr: email,
                           hintText: "Enter your email",
@@ -66,13 +63,10 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 30,
                     ),
-                    Text(
-                      "Password",
-                      style: TextStyle(fontSize: 18),
-                    ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       child: MyTextBox(
+                          label: "Password",
                           onsubmet: (p0) async {
                             try {
                               var authenticationobject = FirebaseAuth.instance;
@@ -101,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                     MyButton(
                       fontsize: 15,
                       Fontcolor: Colors.white,
-                      color: Colors.black,
+                      color: Color.fromRGBO(4, 24, 74, 1),
                       title: "Login",
                       onPressed: () async {
                         try {
@@ -126,7 +120,8 @@ class _LoginPageState extends State<LoginPage> {
                       child: Text("Don't have any account ! Sign Up",
                           style: TextStyle(color: Colors.black)),
                       onPressed: () async {
-                        Navigator.pushNamed(context, RegisterPage.screenRoute);
+                        Navigator.pushReplacementNamed(
+                            context, RegisterPage.screenRoute);
                       },
                     ),
                   ]),

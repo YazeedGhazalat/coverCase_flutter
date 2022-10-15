@@ -57,9 +57,11 @@ class _StorePageState extends State<StorePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        title: Text("MAY Case Store"),
         automaticallyImplyLeading: false,
         elevation: 5,
-        backgroundColor: Colors.black.withAlpha(100),
+        backgroundColor: Color.fromRGBO(4, 24, 74, 1),
         actions: [
           IconButton(
               onPressed: (() {
@@ -71,7 +73,7 @@ class _StorePageState extends State<StorePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.black.withAlpha(100),
+        backgroundColor: Color.fromRGBO(4, 24, 74, 1),
         elevation: 20,
         child: Icon(Icons.add),
         onPressed: () {

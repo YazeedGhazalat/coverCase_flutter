@@ -23,16 +23,16 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        elevation: 0,
+        backgroundColor: Color.fromRGBO(4, 24, 74, 1),
       ),
-      backgroundColor: Colors.white,
       body: Stack(
         children: [
           Container(
             alignment: Alignment.topCenter,
             width: double.infinity,
             decoration: const BoxDecoration(
-              color: Colors.black,
+              color: Color.fromRGBO(4, 24, 74, 1),
             ),
             child: Text(
               "Register",
@@ -53,15 +53,12 @@ class _RegisterPageState extends State<RegisterPage> {
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 100,
-                    ),
-                    Text(
-                      "Email",
-                      style: TextStyle(fontSize: 18),
+                      height: 150,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       child: MyTextBox(
+                          label: "Email",
                           textType: TextInputType.emailAddress,
                           contlr: email,
                           hintText: "Enter your email",
@@ -70,22 +67,38 @@ class _RegisterPageState extends State<RegisterPage> {
                     SizedBox(
                       height: 30,
                     ),
-                    Text(
-                      "Password",
-                      style: TextStyle(fontSize: 18),
-                    ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       child: MyTextBox(
-                          contlr: password,
-                          hintText: "Enter your password",
-                          scureText: true),
+                        label: "Password",
+                        contlr: password,
+                        hintText: "Enter your password",
+                        scureText: true,
+                        onsubmet: (p0) async {
+                          try {
+                            var authenticationobject = FirebaseAuth.instance;
+
+                            UserCredential myUser = await authenticationobject
+                                .createUserWithEmailAndPassword(
+                                    email: email.text, password: password.text);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text("login successfully")));
+                            if (myUser != null) {
+                              Navigator.pushNamed(
+                                  context, StorePage.screenRoute);
+                            }
+                          } catch (e) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(SnackBar(content: Text("$e")));
+                          }
+                        },
+                      ),
                     ),
                     SizedBox(height: 30),
                     MyButton(
-                      fontsize: 15,
+                      fontsize: 20,
                       Fontcolor: Colors.white,
-                      color: Colors.black,
+                      color: Color.fromRGBO(4, 24, 74, 1),
                       title: "Register",
                       onPressed: () async {
                         try {
@@ -107,10 +120,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     SizedBox(height: 25),
                     TextButton(
-                      child: Text("Already have an account ! login",
+                      child: Text("Already have an account ? login",
                           style: TextStyle(color: Colors.black)),
                       onPressed: () async {
-                        Navigator.pushNamed(context, LoginPage.screenRoute);
+                        Navigator.pushReplacementNamed(
+                            context, LoginPage.screenRoute);
                       },
                     ),
                   ]),
