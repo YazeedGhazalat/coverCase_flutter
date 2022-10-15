@@ -4,6 +4,7 @@ import 'package:case_store/screens/WelcomeScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 final _firestore = FirebaseFirestore.instance;
 late User signInUser; //this give us the email
@@ -54,10 +55,47 @@ class _StorePageState extends State<StorePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawerEdgeDragWidth: 150,
+      drawer: Drawer(
+        width: double.infinity,
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: 7,
+          itemBuilder: (BuildContext context, int i) {
+            return Column(
+              children: [
+                Row(
+                  children: [
+                    Image(
+                      height: 150,
+                      image: AssetImage(
+                        "images/${i + 1}.jpg",
+                      ),
+                    ),
+                    Text(
+                      "Image number ${i + 1}",
+                      style: TextStyle(fontSize: 20),
+                    )
+                  ],
+                ),
+                Divider(
+                  thickness: 2,
+                )
+              ],
+            );
+          },
+        ),
+      ),
       appBar: AppBar(
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: Icon(Ionicons.image),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
+        ),
         centerTitle: true,
         title: Text("MAY Case Store"),
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
         elevation: 5,
         backgroundColor: Color.fromRGBO(4, 24, 74, 1),
         actions: [
