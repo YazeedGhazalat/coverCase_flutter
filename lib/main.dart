@@ -1,4 +1,5 @@
 import 'package:case_store/firebase_options.dart';
+import 'package:case_store/screens/Splash.dart';
 import 'package:case_store/screens/WelcomeScreen.dart';
 import 'package:case_store/screens/login&register/loginPage.dart';
 import 'package:case_store/screens/login&register/registerPage.dart';
@@ -33,6 +34,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return WelcomeScreen();
+    return SplashScreen();
   }
 }
