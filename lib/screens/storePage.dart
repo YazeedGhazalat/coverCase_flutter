@@ -59,6 +59,7 @@ class _StorePageState extends State<StorePage> {
       drawer: Drawer(
         width: double.infinity,
         child: ListView.builder(
+          scrollDirection: Axis.vertical,
           shrinkWrap: true,
           itemCount: 7,
           itemBuilder: (BuildContext context, int i) {
