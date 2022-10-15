@@ -100,13 +100,7 @@ class AlertPage extends StatelessWidget {
                 print("${picPrice}     $picUrl");
                 imageUrlControl.clear();
                 priceConrol.clear();
-                // _firestore.collection("stuff").add(
-                //   {
-                //     'price': picPrice.toString(),
-                //     'url': picUrl.toString(),
-                //   },
-                // );
-                //
+
                 final docUser =
                     FirebaseFirestore.instance.collection("stuff").doc();
                 docUser.set({

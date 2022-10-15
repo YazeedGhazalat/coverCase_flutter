@@ -45,59 +45,27 @@ class _LoginPageState extends State<LoginPage> {
                   )),
               height: 700,
               width: 400,
-              child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 150,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: MyTextBox(
-                          label: "Email",
-                          textType: TextInputType.emailAddress,
-                          contlr: email,
-                          hintText: "Enter your email",
-                          scureText: false),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: MyTextBox(
-                          label: "Password",
-                          onsubmet: (p0) async {
-                            try {
-                              var authenticationobject = FirebaseAuth.instance;
-
-                              UserCredential myUser = await authenticationobject
-                                  .signInWithEmailAndPassword(
-                                      email: email.text,
-                                      password: password.text);
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content: Text("login successfully")));
-                              if (myUser != null) {
-                                Navigator.pushNamed(
-                                    context, StorePage.screenRoute);
-                              }
-                            } catch (e) {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(content: Text("$e")));
-                            }
-                          },
-                          contlr: password,
-                          hintText: "Enter your password",
-                          scureText: true),
-                    ),
-                    SizedBox(height: 30),
-                    MyButton(
-                      fontsize: 15,
-                      Fontcolor: Colors.white,
-                      color: Color.fromRGBO(4, 24, 74, 1),
-                      title: "Login",
-                      onPressed: () async {
+              child: Column(children: [
+                SizedBox(
+                  height: 150,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: MyTextBox(
+                      label: "Email",
+                      textType: TextInputType.emailAddress,
+                      contlr: email,
+                      hintText: "Enter your email",
+                      scureText: false),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: MyTextBox(
+                      label: "Password",
+                      onsubmet: (p0) async {
                         try {
                           var authenticationobject = FirebaseAuth.instance;
 
@@ -114,17 +82,44 @@ class _LoginPageState extends State<LoginPage> {
                               .showSnackBar(SnackBar(content: Text("$e")));
                         }
                       },
-                    ),
-                    SizedBox(height: 25),
-                    TextButton(
-                      child: Text("Don't have any account ! Sign Up",
-                          style: TextStyle(color: Colors.black)),
-                      onPressed: () async {
-                        Navigator.pushReplacementNamed(
-                            context, RegisterPage.screenRoute);
-                      },
-                    ),
-                  ]),
+                      contlr: password,
+                      hintText: "Enter your password",
+                      scureText: true),
+                ),
+                SizedBox(height: 30),
+                MyButton(
+                  fontsize: 15,
+                  Fontcolor: Colors.white,
+                  color: Color.fromRGBO(4, 24, 74, 1),
+                  title: "Login",
+                  onPressed: () async {
+                    try {
+                      var authenticationobject = FirebaseAuth.instance;
+
+                      UserCredential myUser =
+                          await authenticationobject.signInWithEmailAndPassword(
+                              email: email.text, password: password.text);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("login successfully")));
+                      if (myUser != null) {
+                        Navigator.pushNamed(context, StorePage.screenRoute);
+                      }
+                    } catch (e) {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text("$e")));
+                    }
+                  },
+                ),
+                SizedBox(height: 25),
+                TextButton(
+                  child: Text("Don't have any account ! Sign Up",
+                      style: TextStyle(color: Colors.black)),
+                  onPressed: () async {
+                    Navigator.pushReplacementNamed(
+                        context, RegisterPage.screenRoute);
+                  },
+                ),
+              ]),
             ),
           )
         ],

@@ -52,26 +52,9 @@ class _SplashScreenState extends State<SplashScreen> {
               SizedBox(
                 height: 40,
               ),
-              // Container(
-              //   height: 200,
-              //   width: 200,
-              //   child: Image.asset(
-              //       'images/apple-7446229_1280-removebg-preview.png'),
-              // ),
               SizedBox(
                 height: 350,
               ),
-              // Center(
-              //   child: Text(
-              //     "Apple Case Store ",
-              //     textAlign: TextAlign.center,
-              //     style: TextStyle(
-              //       color: Color.fromARGB(255, 0, 0, 0),
-              //       fontSize: 24,
-              //       fontWeight: FontWeight.bold,
-              //     ),
-              //   ),
-              // ),
               Image(
                   width: 200,
                   height: 200,
