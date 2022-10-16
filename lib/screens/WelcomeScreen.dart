@@ -40,11 +40,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   Fontcolor: Colors.black,
                   color: Color.fromRGBO(239, 239, 239, 1),
                   onPressed: (() {
-                    showDialog(
-                        context: context,
-                        builder: ((context) {
-                          return RegisterPage();
-                        }));
+                    Navigator.pushNamed(context, RegisterPage.screenRoute);
                   }),
                   title: "Sign up"),
             ],

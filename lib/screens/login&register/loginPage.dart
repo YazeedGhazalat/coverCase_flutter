@@ -105,8 +105,8 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.pushNamed(context, StorePage.screenRoute);
                       }
                     } catch (e) {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text("$e")));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Invalid Email or Password")));
                     }
                   },
                 ),

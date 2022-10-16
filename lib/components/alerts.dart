@@ -100,16 +100,27 @@ class AlertPage extends StatelessWidget {
                 print("${picPrice}     $picUrl");
                 imageUrlControl.clear();
                 priceConrol.clear();
+                List list = ['1', '2', '3', '4', '5', '6', '7'];
+
+                bool res =
+                    list.any((listElement) => listElement.contains(picUrl));
 
                 final docUser =
                     FirebaseFirestore.instance.collection("stuff").doc();
-                docUser.set({
-                  'id': docUser.id,
-                  'url': picUrl,
-                  'price': picPrice,
-                });
+                if (res) {
+                  docUser.set({
+                    'id': docUser.id,
+                    'url': picUrl,
+                    'price': picPrice,
+                  });
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("added successfully")));
+                } else {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text("No such image")));
+                }
               }),
-              title: "Add to store")
+              title: "Add to store"),
         ],
       ),
     );
