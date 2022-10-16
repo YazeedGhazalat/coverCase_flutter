@@ -22,6 +22,7 @@ class itemPicPrice extends StatelessWidget {
           height: 10,
         ),
         StreamBuilder(
+            // Read or get item from firestore
             stream: FirebaseFirestore.instance.collection("stuff").snapshots(),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
@@ -147,13 +148,14 @@ class _PicWidgetState extends State<PicWidget> {
             storeButtton(
                 myicon: Icons.delete,
                 onpressed: () async {
+                  //delete item
                   await _firestore
                       .collection("stuff")
                       .doc(widget.ID)
                       .delete()
                       .then(
                         (doc) => print("Document deleted"),
-                        onError: (e) => print("Error updating document $e"),
+                        onError: (e) => print("Error deleteing document  "),
                       );
                 }),
             Divider(
@@ -170,6 +172,7 @@ class _PicWidgetState extends State<PicWidget> {
                       context: context,
                       builder: ((context) {
                         return AlertUpdate(
+                          //update item
                           ID: widget.ID,
                         );
                       }));

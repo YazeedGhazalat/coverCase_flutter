@@ -28,7 +28,7 @@ class AlertPage extends StatelessWidget {
             }),
             controller: imageUrlControl,
             decoration: InputDecoration(
-              hintText: "Add picture #",
+              hintText: "Add picture #1-7",
               contentPadding: EdgeInsets.symmetric(
                 vertical: 10,
                 horizontal: 20,
@@ -172,7 +172,7 @@ class _AlertUpdateState extends State<AlertUpdate> {
             }),
             controller: imageUrlControl,
             decoration: InputDecoration(
-              hintText: "Add picture #",
+              hintText: "Add picture #1-7",
               contentPadding: EdgeInsets.symmetric(
                 vertical: 10,
                 horizontal: 20,
@@ -248,7 +248,7 @@ class _AlertUpdateState extends State<AlertUpdate> {
           MyButton(
               fontsize: 20,
               Fontcolor: Colors.white,
-              color: Colors.green,
+              color: Color.fromRGBO(76, 175, 80, 1),
               onPressed: (() {
                 if (PicChek && !PriceCheck) {
                   final updatedPic =
