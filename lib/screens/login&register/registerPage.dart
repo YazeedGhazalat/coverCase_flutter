@@ -85,8 +85,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           Navigator.pushNamed(context, StorePage.screenRoute);
                         }
                       } catch (e) {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(SnackBar(content: Text("$e")));
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("Invalid Email or Used before")));
                       }
                     },
                   ),
@@ -110,8 +110,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         Navigator.pushNamed(context, StorePage.screenRoute);
                       }
                     } catch (e) {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text("$e")));
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Invalid Email or Used before")));
                     }
                   },
                 ),
