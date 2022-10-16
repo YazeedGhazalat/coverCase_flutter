@@ -80,7 +80,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             .createUserWithEmailAndPassword(
                                 email: email.text, password: password.text);
                         ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("login successfully")));
+                            SnackBar(content: Text("added successfully")));
                         if (myUser != null) {
                           Navigator.pushNamed(context, StorePage.screenRoute);
                         }
