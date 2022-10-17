@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-class MyTextBox extends StatelessWidget {
+class MyTextBox extends StatefulWidget {
   MyTextBox({
     Key? key,
+    this.iconButton,
     required this.contlr,
     required this.hintText,
     required this.scureText,
@@ -10,26 +11,37 @@ class MyTextBox extends StatelessWidget {
     this.textType,
     this.onChanged,
     this.label,
+    this.textInputAction,
   }) : super(key: key);
   String? picUrl; //this give us the URL for the pic
   String? picPrice; //this give us the Pricefor the pic
   final TextEditingController contlr;
   final String? hintText;
-  bool scureText = false;
+  bool scureText;
   TextInputType? textType;
   Function? onChanged;
   String? label;
+  IconButton? iconButton;
   void Function(String)? onsubmet = (value) {};
+  TextInputAction? textInputAction;
+
+  @override
+  State<MyTextBox> createState() => _MyTextBoxState();
+}
+
+class _MyTextBoxState extends State<MyTextBox> {
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      onSubmitted: onsubmet,
-      keyboardType: textType,
-      obscureText: scureText,
-      controller: contlr,
+    return TextFormField(
+      textInputAction: widget.textInputAction,
+      onFieldSubmitted: widget.onsubmet,
+      keyboardType: widget.textType,
+      obscureText: widget.scureText,
+      controller: widget.contlr,
       decoration: InputDecoration(
-        label: Text("$label"),
-        hintText: "$hintText",
+        suffixIcon: widget.iconButton,
+        label: Text("${widget.label}"),
+        hintText: "${widget.hintText}",
         contentPadding: EdgeInsets.symmetric(
           vertical: 10,
           horizontal: 20,

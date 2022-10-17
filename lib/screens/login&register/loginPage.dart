@@ -15,6 +15,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  bool scureText = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +28,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Container(
           color: Color.fromRGBO(4, 24, 74, 1),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SizedBox(
                 child: Container(
@@ -48,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(100),
                     )),
-                height: 450,
+                height: 650,
                 width: 400,
                 child: Column(children: [
                   SizedBox(
@@ -57,6 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20, right: 20),
                     child: MyTextBox(
+                        textInputAction: TextInputAction.next,
                         label: "Email",
                         textType: TextInputType.emailAddress,
                         contlr: email,
@@ -69,28 +72,42 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20, right: 20),
                     child: MyTextBox(
-                        label: "Password",
-                        onsubmet: (p0) async {
-                          try {
-                            var authenticationobject = FirebaseAuth.instance;
-
-                            UserCredential myUser = await authenticationobject
-                                .signInWithEmailAndPassword(
-                                    email: email.text, password: password.text);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text("login successfully")));
-                            if (myUser != null) {
-                              Navigator.pushNamed(
-                                  context, StorePage.screenRoute);
-                            }
-                          } catch (e) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content: Text("Invalid Email or Password")));
-                          }
+                      textInputAction: TextInputAction.done,
+                      label: "Password",
+                      iconButton: IconButton(
+                        icon: Icon(
+                          // Based on passwordVisible state choose the icon
+                          scureText ? Icons.visibility_off : Icons.visibility,
+                          color: Theme.of(context).primaryColorDark,
+                        ),
+                        onPressed: () {
+                          // Update the state i.e. toogle the state of passwordVisible variable
+                          setState(() {
+                            scureText = !scureText;
+                          });
                         },
-                        contlr: password,
-                        hintText: "Enter your password",
-                        scureText: true),
+                      ),
+                      scureText: scureText,
+                      onsubmet: (p0) async {
+                        try {
+                          var authenticationobject = FirebaseAuth.instance;
+
+                          UserCredential myUser = await authenticationobject
+                              .signInWithEmailAndPassword(
+                                  email: email.text, password: password.text);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text("login successfully")));
+                          if (myUser != null) {
+                            Navigator.pushNamed(context, StorePage.screenRoute);
+                          }
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("Invalid Email or Password")));
+                        }
+                      },
+                      contlr: password,
+                      hintText: "Enter your password",
+                    ),
                   ),
                   SizedBox(height: 30),
                   MyButton(

@@ -23,6 +23,7 @@ class AlertPage extends StatelessWidget {
       title: Column(
         children: [
           TextField(
+            textInputAction: TextInputAction.next,
             onChanged: ((value) {
               picUrl = value;
             }),
@@ -59,6 +60,7 @@ class AlertPage extends StatelessWidget {
             height: 10,
           ),
           TextField(
+            textInputAction: TextInputAction.done,
             onChanged: ((value) {
               picPrice = value;
             }),

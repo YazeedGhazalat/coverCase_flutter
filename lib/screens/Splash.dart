@@ -37,13 +37,13 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          height: 800,
+          height: 870,
           decoration: BoxDecoration(
               image: DecorationImage(
             image: AssetImage(
               "images/Home.jpg",
             ),
-            fit: BoxFit.cover,
+            fit: BoxFit.fitHeight,
           )),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
