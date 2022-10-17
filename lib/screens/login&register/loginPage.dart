@@ -22,107 +22,114 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Color.fromRGBO(4, 24, 74, 1),
         elevation: 0,
       ),
-      body: Stack(
-        children: [
-          Container(
-            alignment: Alignment.topCenter,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(4, 24, 74, 1),
-            ),
-            child: Text(
-              "LOGIN",
-              style: TextStyle(color: Colors.white, fontSize: 40),
-            ),
-          ),
-          Positioned(
-            top: 150,
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(100),
-                  )),
-              height: 700,
-              width: 400,
-              child: Column(children: [
-                SizedBox(
-                  height: 150,
+      body: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        child: Container(
+          color: Color.fromRGBO(4, 24, 74, 1),
+          child: Column(
+            children: [
+              SizedBox(
+                child: Container(
+                  alignment: Alignment.topCenter,
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    color: Color.fromRGBO(4, 24, 74, 1),
+                  ),
+                  child: Text(
+                    "LOGIN",
+                    style: TextStyle(color: Colors.white, fontSize: 40),
+                  ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
-                  child: MyTextBox(
-                      label: "Email",
-                      textType: TextInputType.emailAddress,
-                      contlr: email,
-                      hintText: "Enter your email",
-                      scureText: false),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
-                  child: MyTextBox(
-                      label: "Password",
-                      onsubmet: (p0) async {
-                        try {
-                          var authenticationobject = FirebaseAuth.instance;
+                height: 150,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(100),
+                    )),
+                height: 450,
+                width: 400,
+                child: Column(children: [
+                  SizedBox(
+                    height: 150,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: MyTextBox(
+                        label: "Email",
+                        textType: TextInputType.emailAddress,
+                        contlr: email,
+                        hintText: "Enter your email",
+                        scureText: false),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: MyTextBox(
+                        label: "Password",
+                        onsubmet: (p0) async {
+                          try {
+                            var authenticationobject = FirebaseAuth.instance;
 
-                          UserCredential myUser = await authenticationobject
-                              .signInWithEmailAndPassword(
-                                  email: email.text, password: password.text);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("login successfully")));
-                          if (myUser != null) {
-                            Navigator.pushNamed(context, StorePage.screenRoute);
+                            UserCredential myUser = await authenticationobject
+                                .signInWithEmailAndPassword(
+                                    email: email.text, password: password.text);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text("login successfully")));
+                            if (myUser != null) {
+                              Navigator.pushNamed(
+                                  context, StorePage.screenRoute);
+                            }
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text("Invalid Email or Password")));
                           }
-                        } catch (e) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text("Invalid Email or Password")));
-                        }
-                      },
-                      contlr: password,
-                      hintText: "Enter your password",
-                      scureText: true),
-                ),
-                SizedBox(height: 30),
-                MyButton(
-                  fontsize: 15,
-                  Fontcolor: Colors.white,
-                  color: Color.fromRGBO(4, 24, 74, 1),
-                  title: "Login",
-                  onPressed: () async {
-                    try {
-                      var authenticationobject = FirebaseAuth.instance;
+                        },
+                        contlr: password,
+                        hintText: "Enter your password",
+                        scureText: true),
+                  ),
+                  SizedBox(height: 30),
+                  MyButton(
+                    fontsize: 15,
+                    Fontcolor: Colors.white,
+                    color: Color.fromRGBO(4, 24, 74, 1),
+                    title: "Login",
+                    onPressed: () async {
+                      try {
+                        var authenticationobject = FirebaseAuth.instance;
 
-                      UserCredential myUser =
-                          await authenticationobject.signInWithEmailAndPassword(
-                              email: email.text, password: password.text);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("login successfully")));
-                      if (myUser != null) {
-                        Navigator.pushNamed(context, StorePage.screenRoute);
+                        UserCredential myUser = await authenticationobject
+                            .signInWithEmailAndPassword(
+                                email: email.text, password: password.text);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("login successfully")));
+                        if (myUser != null) {
+                          Navigator.pushNamed(context, StorePage.screenRoute);
+                        }
+                      } catch (e) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("Invalid Email or Password")));
                       }
-                    } catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Invalid Email or Password")));
-                    }
-                  },
-                ),
-                SizedBox(height: 25),
-                TextButton(
-                  child: Text("Don't have any account ! Sign Up",
-                      style: TextStyle(color: Colors.black)),
-                  onPressed: () async {
-                    Navigator.pushReplacementNamed(
-                        context, RegisterPage.screenRoute);
-                  },
-                ),
-              ]),
-            ),
-          )
-        ],
+                    },
+                  ),
+                  SizedBox(height: 25),
+                  TextButton(
+                    child: Text("Don't have any account ! Sign Up",
+                        style: TextStyle(color: Colors.black)),
+                    onPressed: () async {
+                      Navigator.pushReplacementNamed(
+                          context, RegisterPage.screenRoute);
+                    },
+                  ),
+                ]),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

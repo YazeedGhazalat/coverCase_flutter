@@ -36,22 +36,6 @@ class _StorePageState extends State<StorePage> {
     }
   }
 
-  // void PcStream() async {
-  //   await for (var snapshot in _firestore.collection("stuff").snapshots()) {
-  //     for (var message in snapshot.docs) {
-  //       print(message.data());
-  //     }
-  //   }
-  // }
-
-  // void getMessages() async {
-  //   final pics = await _firestore.collection('stuff').get();
-
-  //   for (var pic in pics.docs) {
-  //     print(pic.data());
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,7 +108,7 @@ class _StorePageState extends State<StorePage> {
       body: SafeArea(
           child: Center(
         child: SingleChildScrollView(
-          child: itemPicPrice(),
+          child: itemPicPrice(), //update / read / delete
         ),
       )),
     );
